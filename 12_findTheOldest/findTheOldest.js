@@ -1,19 +1,15 @@
-const CURRENT_YEAR = 2021;
-
-const getAge = function (person) {
-  if (person.yearOfDeath === undefined)
-    return CURRENT_YEAR - person.yearOfBirth;
-  return person.yearOfDeath - person.yearOfBirth;
-}
-
 const findTheOldest = function (persons) {
-  if (persons.length <= 0) return null;
+  let copy = [...persons];
+  const CURRENT_YEAR = 2021;
 
-  let initialPerson = persons[0];
+  const getAge = function (person) {
+    if (person.yearOfDeath === undefined)
+      return CURRENT_YEAR - person.yearOfBirth;
+    return person.yearOfDeath - person.yearOfBirth;
+  }
 
-  return persons.reduce((oldest, current) =>
-    (getAge(oldest) > getAge(current) ? oldest : current),
-    initialPerson);
+  copy.sort((a, b) => (getAge(b) - getAge(a)));
+  return copy[0];
 };
 
 // Do not edit below this line
