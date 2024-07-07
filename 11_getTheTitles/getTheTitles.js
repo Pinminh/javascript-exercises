@@ -1,11 +1,7 @@
 const getTheTitles = function (books) {
-  let titles = [];
-
-  for (let book of books) {
-    titles.push(book.title);
-  }
-
-  return titles;
+  return books.reduce((titles, book) => {
+    return titles.concat(book.title);
+  }, []);
 };
 
 // Do not edit below this line
